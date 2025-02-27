@@ -106,7 +106,7 @@ jobs:
       run: |
         cd openwrt/bin
         mkdir -p artifacts/packages
-        cp -r packages/*/* artifacts/packages/
+        cp -r targets/*/*/packages/* artifacts/packages/
         tar -czvf openwrt-artifacts.tar.gz artifacts/
 
     - name: Upload artifacts
