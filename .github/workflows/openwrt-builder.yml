@@ -102,6 +102,21 @@ jobs:
       if: (!cancelled())
       run: df -hT
 
+    - name: Package artifacts
+      run: |
+        cd openwrt/bin
+        mkdir -p artifacts/packages
+        cp -r packages/*/* artifacts/packages/
+        tar -czvf openwrt-artifacts.tar.gz artifacts/
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@main
+      with:
+        name: openwrt-build
+        path: |
+          openwrt/bin/artifacts/*
+          openwrt/bin/openwrt-artifacts.tar.gz
+
     - name: Upload bin directory
       uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
