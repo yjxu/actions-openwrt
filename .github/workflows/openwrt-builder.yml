@@ -18,9 +18,9 @@ on:
 
 env:
   REPO_URL: https://github.com/yjxu/immortalwrt
-  REPO_BRANCH: openwrt-23.05
+  REPO_BRANCH: openwrt-24.10
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: .config
+  CONFIG_FILE: 24.10.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: false
@@ -107,15 +107,13 @@ jobs:
         cd openwrt/bin
         mkdir -p artifacts/packages
         cp -r targets/*/*/packages/* artifacts/packages/
-        tar -czvf openwrt-artifacts.tar.gz artifacts/
-
+  
     - name: Upload artifacts
       uses: actions/upload-artifact@main
       with:
         name: openwrt-build
         path: |
           openwrt/bin/artifacts/*
-          openwrt/bin/openwrt-artifacts.tar.gz
 
     - name: Upload bin directory
       uses: actions/upload-artifact@main
@@ -169,7 +167,7 @@ jobs:
       uses: dev-drprasad/delete-older-releases@master
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
-        keep_latest: 3
+        keep_latest: 6
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
