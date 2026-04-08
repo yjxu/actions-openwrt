@@ -17,10 +17,10 @@ on:
   workflow_dispatch:
 
 env:
-  REPO_URL: https://github.com/yjxu/immortalwrt
-  REPO_BRANCH: openwrt-25.12-sl3000
+  REPO_URL: https://github.com/yjxu/immortalwrt-mt798x-rebase
+  REPO_BRANCH: 25.12-dev
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: sl-3000-25.12.config
+  CONFIG_FILE: clx-s20l.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: false
